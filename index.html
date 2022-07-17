@@ -1,0 +1,195 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiMe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="2.ico">
+</head>
+<body>
+    <section id="section">
+    <nav class="navg" id="top">
+        <img title="Jaya Sai Thaurn Pechetti" src="nike.jpg" class="profile">
+        <span>MiMe</span>
+        <ul class="elements" id="horizontal">
+            <li class="home1" id="home2"><a href="index.html">HOME</a></li>
+            <li class="home1"><a href="form.html">REGISTER</a></li>
+            <li class="home1" id="home"><a href="#">BRANCH</a>
+                <div class="sublist1">
+                    <ul style="list-style-type:none">
+                    <li class="student1"><a href="#">CSE</a>
+                        <div class="sublist2 sublist">
+                            <ul style="list-style-type:none">
+                                <li ><a href="#" onclick="show_register()">FACULTY</a></li>
+                                <li><a href="#" onclick="show_register()">STUDENT</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">ECE</a></li>
+                    
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="home1"><a href="contact.html">CONTACT</a></li>
+        </ul>
+        
+        <img src="menu.png" class="tharun tharun2" id="top2" onclick="hide_v_nav()" onmouseover="show_v_nav()">
+    </nav>
+    <div class="sublist2 sublist">
+        <ul style="list-style-type:none">
+            <li ><a href="#">Student</a></li>
+            <li><a href="#">Teacher</a></li>
+        </ul>
+    </div>
+    <nav class="navg" id="vertical"  onmouseover="change()" onmouseleave="hide_v_nav()">
+        <ul class="elements">
+            <li class="home1" id="home"><a href="#">BRANCH</a>
+                <div class="sublist1">
+                    <ul style="list-style-type:none">
+                    <li class="student1"><a href="#">CSE</a>
+                        <div class="sublist2">
+                            <ul style="list-style-type:none">
+                                <li onclick="show_register()"><a href="#" >FACULTY</a></li>
+                                <li onclick="show_register()"><a href="#" >STUDENT</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#">ECE</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="home1" id="home2"><a href="index.html">HOME</a></li>
+            <li class="home1"><a href="form.html">REGISTER</a></li>
+            <li class="home1"><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+    <section class="section1">
+        <div class="main">
+            <div class="left">
+                <div id="left_search">
+                <input id="search" placeholder="ENTER AN ID TO SEARCH" type="text">
+                <button id="button" onclick="id_search()">Search</button><br>
+                </div>
+                <div id="display_id">
+                </div>
+            </div>
+            <div class="middle" id="hide">
+                <div class="center">
+                <div class="slider">
+                    <img src="1.jpg" style="width:100%"></div>
+                    <div class="slider"> <img src="2.jpg" style="width:100%"></div>
+                        <div class="slider">  <img src="3.jpg" style="width:100%"></div>
+                            <div class="slider">   <img src="4.jpg" style="width:100%">
+                </div>
+                
+            </div>
+        </div>
+            <div class="right">
+                <p>NOTIFICATIONS</p>
+                <div class="innerbox">
+                <marquee direction="up">
+               <div class="notification"> 
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+                <p>Lorem ipsum dolor.</p>
+            </div>
+        </marquee>
+    </div>
+        </div>
+        </div>
+    </section>
+</section>
+<!-- <div id="register_form">
+    <div class="center">
+    <div class="slider">
+        <input type="text" placeholder="username" id="username">
+        <button id="register" onclick="register()">Register</button>
+    </div> -->
+    <footer class="footer">
+        <!-- hitwebcounter Code START--> 
+<a href="https://www.hitwebcounter.com" target="_blank">
+    <img src="https://hitwebcounter.com/counter/counter.php?page=8014398&style=0009&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>        
+    <a href="#top" class="bottom"><img src="logo.png"></a> 
+    </footer>
+<script type="text/javascript">
+var arr= new Array("N181099","n181010","N123456");
+console.log(arr);
+function id_search(){
+    var id_no=document.getElementById("search").value;
+    console.log(id_no);
+    if(arr.includes(id_no)){
+        document.getElementById("display_id").innerHTML=id_no +" is found";
+        const myTimeout = setTimeout(show_i, 2000);
+    }
+    else{
+        document.getElementById("display_id").innerHTML=id_no +" is not found";
+        const myTimeout = setTimeout(show_i, 2000);
+    }
+}
+function show_i(){
+    document.getElementById("display_id").innerHTML="";
+    show_id();
+}
+var x=document.getElementById("vertical");
+function show_v_nav(){
+    x.style.display="block";
+}
+function hide_v_nav(){
+    x.style.display="none";
+}
+function change(){
+    // x.style.backgroundColor="red";
+}
+let slideIndex = 0;
+showSlides();
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("slider");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+function show_id(){
+    for(var x=0; x<arr.length;x++){
+        var regex=document.getElementById("display_id").innerHTML;
+        document.getElementById("display_id").innerHTML=regex+"<br><br>"+arr[x];
+    }
+}
+show_id();
+// function register(){
+//     var e= document.getElementById("username").value;
+//     if(e!=""){
+//         var c=arr.length;
+//         arr[c]=e;
+//         console.log(arr[c]);
+//     }
+//     document.getElementById("display_id").innerHTML="";
+//     show_id();
+// }
+function show_register(){
+    var xy=prompt("Enter your ID");
+    if(xy!=""){
+        var c=arr.length;
+        arr[c]=xy;
+        console.log(arr[c]);
+    }
+    document.getElementById("display_id").innerHTML="";
+    show_id();
+}
+function preventBack() { window.history.forward(); }  
+    setTimeout("preventBack()", 0);  
+    window.onunload = function () { null }; 
+</script>
+</body>
+</html>

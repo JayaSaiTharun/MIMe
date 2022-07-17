@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .slider{
+            /* background-image: url("1.jpg"); */
+            background-repeat: no-repeat;
+            background-size:100% 550px;
+            width: 50%;
+            margin-left: 30%;
+            border: 2px solid red;
+            height: 550px;
+        }
+        form{
+            margin-left: 20%;
+            margin-top:10% ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <form action="index.html" onsubmit="run()" method="get" >
+                        First Name :
+                    
+                    <input type="text" name="first" id="first" oninput="firstname()"><span id="firstalert"></span><br>
+                        Middle Name :
+                    
+                    <input type="text" name="middle" id="middle" oninput="middlename()"><span id="middlealert"></span><br>
+                        Last Name :
+                   
+                    <input type="text" name="last" id="last" oninput="lastname()"><span id="lastalert"></span>
+                    <br>
+                    Select :
+                    <select id="select1" onchange="phone()"><option selected disabled>choose</option><option>Indian</option><option>America</option></select>
+                    Phone Number:<input type="text" id="phone_number" oninput="phone()" disabled><span id="phone_valid"></span><br>
+                    Password :
+                        <input type="password" name="password" id="password">
+                        <br>
+                    Hobbies:
+                    <br>
+                    <input type="checkbox" onclick="hobby()" value="Cricket" class="tharun" name="yes">Cricket<br>
+                    <input type="checkbox" value="Singing" onclick="hobby()" name="yes" class="tharun">Singing<br>
+                    <input type="checkbox" value="Studying" onclick="hobby()" name="yes" class="tharun">Studying
+                    <br><input type="checkbox" value="Sleeping" onclick="hobby()" name="yes" class="tharun">Sleeping
+                    <br>
+                    Checked are: <span id="hobbies">tharun</span><br>
+                    Upload Your Photo: <input type="file" id="file" oninput="fileupload()">
+                    <br>Email :<input type="email"><br>
+                    Address : <textarea cols="10" rows="2" id="adress" oninput="addresss()"></textarea>
+                    <span id="address_display"></span>
+                    <br>DOB: <input type="date" id="dob" oninput="dobb()"><span id="age"></span>
+                    <br>
+                    <input type="checkbox" value="on" id="terms"> Accept terms and conditons
+                    <br><input type="reset" value="Reset">
+                    <input type="submit" value="Submit" onclick="return run()">
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+    const count=0;
+    var k=0;
+    var arr=["1.jpg","2.jpg","3.jpg","4.jpg"];
+    /*function changeback(){
+        var n=document.getElementsByClassName("slider");
+        n[0].style.backgroundImage="url("+arr[k]+")";
+        if(k<arr.length-1){
+            k++;
+        }
+        else{
+            k=0;
+        }
+        setTimeout(changeback,2000);
+    }
+    changeback();*/
+    function run(){
+
+        return confirm("Are you sure to submit your Details");
+        
+    }
+    function firstname(){
+        var fname=document.getElementById("first").value;
+     if(fname.length<=3 || fname==""){
+         document.getElementById("firstalert").innerHTML="Data entered is invalid";
+        document.getElementById("first").style.border="4px red solid";
+         return false;
+     }
+     else{
+         document.getElementById("first").style.border="0px red solid";
+         document.getElementById("firstalert").innerHTML="";
+     }
+     var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+     if(re.test(fname)){
+         document.getElementById("firstalert").innerHTML="Data is valid";
+     }
+     else{
+         document.getElementById("firstalert").innerHTML="Data entered is invalid";
+         document.getElementById("first").style.border="4px red solid";
+         return false;
+     }
+    }
+    function middlename(){
+        var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+    var mname=document.getElementById("middle").value;
+    console.log(mname);
+    if(mname==""){
+        document.getElementById("middlealert").innerHTML="";
+        
+    }
+    else{
+        if(re.test(mname)){
+        document.getElementById("middlealert").innerHTML="Data is valid";
+        document.getElementById("middle").style.border="0px red solid";
+        }
+    else{
+        document.getElementById("middlealert").innerHTML="Data entered is invalid";
+        document.getElementById("middle").style.border="4px red solid";
+        return false;
+    }
+    }
+    }
+    function lastname(){
+        var lname=document.getElementById("last").value;
+     if(lname.length<=3 || lname==""){
+         document.getElementById("lastalert").innerHTML="Data entered is invalid";
+        document.getElementById("last").style.border="4px red solid";
+         return false;
+     }
+     else{
+         document.getElementById("last").style.border="0px red solid";
+         document.getElementById("lastalert").innerHTML="";
+     }
+     var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+     if(re.test(lname)){
+         document.getElementById("lastalert").innerHTML="Data is valid";
+     }
+     else{
+         document.getElementById("lastalert").innerHTML="Data entered is invalid";
+         document.getElementById("last").style.border="4px red solid";
+         return false;
+     }
+    }
+    function phone(){
+        var check= document.getElementById("select1").value;
+    var phone=document.getElementById("phone_number").value;
+    if(check!="choose"){
+        document.getElementById("phone_number").removeAttribute("disabled");
+    if(check=="America"){
+        var american_phone=/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
+        if(american_phone.test(phone)){
+            document.getElementById("phone_valid").innerHTML="correct";
+        }
+        else{
+            document.getElementById("phone_valid").innerHTML="Enter a valid format";
+            return false;
+        }
+    }
+    else if(check=="Indian"){
+        // alert("indian");
+        var indian_phone=/^[0-9]{10}$/
+        if(indian_phone.test(phone)){
+            document.getElementById("phone_valid").innerHTML="correct";
+        }
+        else{
+            document.getElementById("phone_valid").innerHTML="Enter a valid format";
+            return false;
+        }
+    }
+}
+    }
+    function password(){
+                 var run=document.getElementById("password").value;
+                 var flag1=0;
+                 var flag2=0;
+                 var flag3=0;
+                 var flag4=0;
+                 for(var i=0; i<run.length;i++){
+                     console.log(run);
+                     console.log(run.charCodeAt(i));
+                     if(run.charCodeAt(i)<=57 && run.charCodeAt(i)>=48){
+                         flag1++;
+                     }
+                     else if(run.charCodeAt(i)<=90 && run.charCodeAt(i)>=65){
+                         flag2++;
+                     }
+                     else if(run.charCodeAt(i)<=122 && run.charCodeAt(i)>=97){
+                         flag3++;
+                     }
+                     else if((run.charCodeAt(i)<=47 && run.charCodeAt(i)>=32)  || (run.charCodeAt(i)<=64 && run.charCodeAt(i)>=58) || (run.charCodeAt(i)<=96 && run.charCodeAt(i)>=91) || (run.charCodeAt(i)<=126 && run.charCodeAt(i)>=123)){
+                         flag4++;
+                     }
+                 }
+                 var x=run.length;
+                 if(x>=8 && flag1>0 && flag2>0 && flag3>0 && flag4>0){
+                    return true;
+                 }
+                 else{
+                    return false;
+                 }
+                
+    }
+    function hobby(){
+        var hobby=document.getElementsByName("yes");
+    var hobby_list=document.getElementById("hobbies").textContent;
+    console.log("--------------------------");
+    console.log(hobby_list);
+    var trunks;
+    for(var i=0;i<hobby.length;i++){
+        if(hobby[i].checked){
+            if(!(hobby_list.includes(hobby[i].value))){
+            var trunk=hobby_list+", "+hobby[i].value;
+            // console.log(trunk);
+            document.getElementById("hobbies").innerHTML=trunk;
+            hobby_list=document.getElementById("hobbies").textContent;
+            // console.log(hobby_list);
+            }
+            //else{
+           //     document.getElementById("hobbies").innerHTML=hobby_list;
+            //}
+        }
+        else{
+            var t=hobby[i].value;
+            // console.log(hobby_list);
+            // console.log(t);
+            trunks=hobby_list.replace(t,"");
+            console.log(trunks);
+            document.getElementById("hobbies").innerHTML=trunks;
+        }
+        if(hobby.length>3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    }
+    function dobb(){
+        var bday= document.getElementById("dob").value;
+    var birthday=new Date(bday);
+    var today= new Date();
+    var age=today.getFullYear()-birthday.getFullYear();
+    if(today.getMonth() < birthday.getMonth()){
+        age=age-1;
+    }    
+    document.getElementById("age").innerHTML="     Age is "+age+" Years";
+    return true;
+    }
+    function addresss(){
+        var address= document.getElementById("adress").value;
+    console.log(address);
+    var array=[0,1,2,3,4,5,6,7,8,9];
+    for(var j=0; j<array.length;j++){
+        if(address.includes(array[j])){
+            address=address.replaceAll(array[j],"");
+        }
+    }
+    document.getElementById("address_display").innerHTML=address;
+    return true;
+    }
+    function fileupload(){
+        var file=document.getElementById("file");
+        if(file.files.length>0){
+        for(var i=0;i<=file.files.length-1;i++){
+            var fsize=file.files.item(i).size;
+            var ff=Math.round((fsize/1024));
+            if(ff>=150){
+                alert("not succeeded");
+                file.value="";
+                return false;
+            }
+            else{
+                alert("success");
+                return true;
+            }
+        }
+        
+    }
+    }
+    function final(){
+    let input1=run(), input2=firstname(), input3=middlename(), input4=lastname(), input5=phone(), input6=password(), input7=hobby(), input8=dobb(), input9=addresss(),input10=fileupload();
+    let result=input1 && input2 && input3 && input4 && input5 && input6 && input7 && input8 && input9 && input10;
+    if(result){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+var xz= document.getElementById("current");
+xz.addEventListener(submit,final);
+    /*
+function validate(){
+     var fname=document.getElementById("first").value;
+     if(fname.length<=3 || fname==""){
+         document.getElementById("firstalert").innerHTML="Data entered is invalid";
+        document.getElementById("first").style.border="4px red solid";
+         return false;
+     }
+     else{
+         document.getElementById("first").style.border="0px red solid";
+         document.getElementById("firstalert").innerHTML="";
+     }
+     var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+     if(re.test(fname)){
+         document.getElementById("firstalert").innerHTML="Data is valid";
+     }
+     else{
+         document.getElementById("firstalert").innerHTML="Data entered is invalid";
+         document.getElementById("first").style.border="4px red solid";
+         return false;
+     }
+    var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+    var mname=document.getElementById("middle").value;
+    console.log(mname);
+    if(mname==""){
+        document.getElementById("middlealert").innerHTML="";
+        
+    }
+    else{
+        if(re.test(mname)){
+        document.getElementById("middlealert").innerHTML="Data is valid";
+        document.getElementById("middle").style.border="0px red solid";
+        }
+    else{
+        document.getElementById("middlealert").innerHTML="Data entered is invalid";
+        document.getElementById("middle").style.border="4px red solid";
+        return false;
+    }
+    }
+
+    var lname=document.getElementById("last").value;
+     if(lname.length<=3 || lname==""){
+         document.getElementById("lastalert").innerHTML="Data entered is invalid";
+        document.getElementById("last").style.border="4px red solid";
+         return false;
+     }
+     else{
+         document.getElementById("last").style.border="0px red solid";
+         document.getElementById("lastalert").innerHTML="";
+     }
+     var re=/^[a-z,A-Z][a-z,A-Z]*$/;
+     if(re.test(lname)){
+         document.getElementById("lastalert").innerHTML="Data is valid";
+     }
+     else{
+         document.getElementById("lastalert").innerHTML="Data entered is invalid";
+         document.getElementById("last").style.border="4px red solid";
+         return false;
+     }
+    var check= document.getElementById("select1").value;
+    var phone=document.getElementById("phone_number").value;
+    if(check!="choose"){
+        document.getElementById("phone_number").removeAttribute("disabled");
+    if(check=="America"){
+        var american_phone=/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/
+        if(american_phone.test(phone)){
+            document.getElementById("phone_valid").innerHTML="";
+        }
+        else{
+            document.getElementById("phone_valid").innerHTML="Enter a valid format";
+            return false;
+        }
+    }
+    else if(check=="Indian"){
+        // alert("indian");
+        var indian_phone=/^[0-9]{10}$/
+        if(indian_phone.test(phone)){
+            document.getElementById("phone_valid").innerHTML="";
+        }
+        else{
+            document.getElementById("phone_valid").innerHTML="Enter a valid format";
+            return false;
+        }
+    }
+}
+    var pass=document.getElementById("password").value;
+    var hobby=document.getElementsByName("yes");
+    var hobby_list=document.getElementById("hobbies").textContent;
+    console.log("--------------------------");
+    console.log(hobby_list);
+    var trunks;
+    for(var i=0;i<hobby.length;i++){
+        if(hobby[i].checked){
+            if(!(hobby_list.includes(hobby[i].value))){
+            var trunk=hobby_list+", "+hobby[i].value;
+            // console.log(trunk);
+            document.getElementById("hobbies").innerHTML=trunk;
+            hobby_list=document.getElementById("hobbies").textContent;
+            // console.log(hobby_list);
+            }
+            //else{
+           //     document.getElementById("hobbies").innerHTML=hobby_list;
+            //}
+        }
+        else{
+            var t=hobby[i].value;
+            // console.log(hobby_list);
+            // console.log(t);
+            trunks=hobby_list.replace(t,"");
+            console.log(trunks);
+            document.getElementById("hobbies").innerHTML=trunks;
+        }
+        
+    }
+    // console.log(hobby);
+    
+    var bday= document.getElementById("dob").value;
+    var birthday=new Date(bday);
+    var today= new Date();
+    var age=today.getFullYear()-birthday.getFullYear();
+    if(today.getMonth() < birthday.getMonth()){
+        age=age-1;
+    }    
+    document.getElementById("age").innerHTML="     Age is "+age+" Years";
+    console.log(age);
+    
+   var address= document.getElementById("adress").value;
+    console.log(address);
+    var array=[0,1,2,3,4,5,6,7,8,9];
+    for(var j=0; j<array.length;j++){
+        if(address.includes(array[j])){
+            address=address.replaceAll(array[j],"");
+        }
+    }
+    console.log(address);
+    document.getElementById("address").innerHTML=address;
+    
+    var file=document.getElementById("file");
+    if(file.files.length>0){
+        for(var i=0;i<=file.files.length-1;i++){
+            var fsize=file.files.item(i).size;
+            var ff=Math.round((fsize/1024));
+            if(ff>=150){
+                // alert("not succeeded");
+                file.value="";
+                return false;
+            }
+            else{
+                // alert("success");
+                return true;
+            }
+        }
+    }
+
+
+}*/
+function preventBack() { window.history.forward(); }  
+    setTimeout("preventBack()", 0);  
+    window.onunload = function () { null };
+</script>
+</html>
